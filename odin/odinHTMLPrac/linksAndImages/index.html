@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links and Images Practice</title>
+</head>
+<body>
+    <h1>Homepage</h1>
+    <!-- CTRL + C + K to comment in HTML -->
+    <!-- <p> is used here to create 1 line of whitespace between the links and put them each on their own line -->
+    <p>
+        <!-- target=_blank will make it so clicking the link will open it in a new tab. exchnaging this for _self will open in the the same tab. leaving blank also opens in same tab -->
+        <!-- noopener  prevents the prevents this opened link from gaining access from the webpage from which it was opened.
+        noreferrer prevents the link from knowing which website has a link (or reference to it)   This is a security feature 
+        to keep users safe and prevent people from changing links maliciously eg phishing attacks. noreferrer does what 
+        noopener does and more so we can use that one by itself if we wish-->
+        <!-- must include https and domain for absolute link! -->
+        <a href="https://www.theodinproject.com/about" target="_blank" rel="noopener noreferrer">Click Me</a>
+        <!-- This is an absolute link as it references an outside external webpage whereas a relative link refers to another page on the same site. -->
+    </p>
+    <p>
+        <!-- THis is a relative link references another page on the same page (no domain name or protocol) -->
+        <a href="about.html">About Page</a>
+    </p>
+    <!-- since the image is in a different directory we must use the ./ to signal it is 1 level away -->
+    <!-- src points to the local image file, alt is used to describe the image and will be displayed if the image cannot be displayed -->
+    <!-- its best practice to specify the height and width on every image even if we plan to change it with css or if the image is already the correct size -->
+    <img src="./images/charlesdeluvio-Mv9hjnEUHR4-unsplash.jpg" alt="The Odin Pug" height="400" width="400">
+</body>
+</html>
