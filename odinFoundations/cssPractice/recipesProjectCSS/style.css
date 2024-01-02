@@ -1,0 +1,58 @@
+.mainBody {
+    background-color: aqua;
+}
+
+#mainHeader {
+    color: darkorchid;
+}
+
+.mainLink {
+    font-size: 22px;
+    color: deeppink;
+}
+
+a {
+    color: deeppink;
+}
+
+.mainImage {
+    width: 95%;
+    height: auto;
+    
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+macImg{
+    width: 500px;
+    height: auto;
+}
+
+h1{
+    font-weight: 600px;
+    font-size: 40px;
+}
+
+#macHeader{
+    color: goldenrod;
+}
+
+.macBody{
+    background-color: yellow;
+}
+
+.desc{
+    
+    font-weight: bold;
+}
+
+
+*{
+    text-align: center;
+    
+}
+

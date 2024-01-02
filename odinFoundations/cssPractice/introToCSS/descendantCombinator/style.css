@@ -1,0 +1,8 @@
+/* Here we are using the type selctor with a descending combintor to style the p elements, in this case, that are a descendant (child) of, in this case, div */
+
+div p {
+    background-color: yellow;
+    color: red;
+    font-size: 20px;
+    text-align: center;
+}

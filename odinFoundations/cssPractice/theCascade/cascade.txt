@@ -1,0 +1,12 @@
+Specificity in CSS is used to determine which rule or style will be applied to an element if there are conflicting rules. 
+Selectors: ID-most specific, Class-second most specific, type-third most specific universal selector (*)- least specific.
+Example: there is a conflict where an element has 2 conflicting rules. One rule uses one class selector but the other conflicting rule used 2 class selectors. The latter would be more specific
+and therefore would be the rule that is ultimately applied. If this same situation happened but one conflicting rule uses and ID selector and the other uses 2 class selectors the ID selector is 
+more specific and therefore would be the rule that is applied. Final example: one rule has an ID selector and the other has an ID and a class selector, the latter would be applied as it is 
+more specific. 
+
+Some properties color, font-size, font-family are inherited by children of an element styled with these properties even if you dont explicitly write the code. If you were to style one of these 
+elements that inherited a property that would always take precedent over inheritance.
+
+Finally if there are 2 conflicting rules of the exact same specificity say both using a class selector, then the one written last (closest to the bottom of the code) 
+will be the one that is applied. 
