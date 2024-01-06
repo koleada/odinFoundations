@@ -1,0 +1,85 @@
+/* Made this a flexbox and used space-between to push elements to the top and bottom respectively also changed
+direction to column to get this pushing effect and to create the overarching layout of this page. */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Flexbox, vertically centered the text, added a small amount of padding on the left */
+.header {
+  height: 72px;
+  background: darkmagenta;
+  color: white;
+  font-size: 32px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.footer {
+  height: 72px;
+  background: #eee;
+  color: darkmagenta;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* set a finite width and made it not shrink, made this its own flexbox as well to help with alignment and changed direction */
+.sidebar {
+  width: 300px;
+  background: royalblue;
+  box-sizing: border-box;
+  display: flex;
+  width: 300px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* made the ul a flexbox as well so I could space out the links to my liking. Could not use the gap property
+in the sidebar flexbox as the list elements are "wrapped" in the <ul> tag  */
+ul {
+  list-style: none;
+  font-size: 24px;
+  padding: 16px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* remove underline and change color (from blue) */
+a {
+  text-decoration: none;
+  color: white;
+}
+/* This class is for each individual card (each a flex item) This was so we could define a set hight and width, padding
+wrap the text and add margin so the individual cards are separated.  */
+.card {
+  border: 1px solid #eee;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  height: 305px;
+  width: 350px;
+  margin: 16px;
+  text-wrap: wrap;
+  padding: 10px;
+}
+/* Made the middle a flexbox as well (cards+ sidebar) to properly align and center the items */
+.middle {
+  display: flex;
+}
+/* Also made a new div for the cards so they get their own flexbox to get the sort of grid look we want  */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 32px;
+  justify-content: center;
+}

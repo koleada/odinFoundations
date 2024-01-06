@@ -1,0 +1,98 @@
+flexbox is a relativley new addition to css and for many has quickly became the default way to position elements. 
+
+** this is a bit of a complex topic so be sure to look at your element in dev tools if you have any issues. 
+
+flexbox is a way to arrange items into rows or columns, these items will flex (grow or shrink) based on simple rules we can define. 
+
+flexbox is not a single property but rather a toolbox of properties we can use to position things. Items in a flex container will dynamically resize based on screen size and adding a new
+element to a flex container will add it in at an equal size. A flex container is any element with the style "display: flex;". A flex item is any element that lives within a flex container. 
+Items get the style "flex: 1;" added to them. You can also have a flex item be a flex container as well, basically a flex container inside another flex container. Creating and nesting 
+multiple containers will be the primary way of building complex layouts. See the included picture. 
+
+Flexbox allows us complete control over the alignment, direction, order and size of any nested flex items. 
+
+The main job of a flex item is to determine how many items are within the flex container the flex container is ultimately what will position the items. 
+
+Once we have a flex container by adding the display: flex; style to an element, we can begin to style it. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+alignment: 
+justify-content aligns across the MAIN AXIS
+We can align the items using the following justify-content: center; will center align the flex items. Again this will have to be added to the flex container. THis has the same effect of using margin: auto; to center.
+other values for justify-content include center, flex-start, flex-end, space-around, space-between. 
+flex-start and end align the element to the left and right side of the browser window respectively. 
+Space-around value spreads nested items out across the entire width of the container. The flex container automatically distributes leftover space on either side of the items. 
+space-between os similar to around but only distributes the leftover space between items. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Flex containers only now how to position their own child elements they don't have any influence over their children's items. Therefore we can strategically group flex items together to get very
+specific advanced looking layouts. Wrapping items in a div can completely change the look of a webpage. Putting a div around 2 flex items will make the items not effected by the flex containers
+rules, eg if they are block elements by default they will again behave like a block element after being wrapped in a div. 
+
+** wrapping things in a border for debugging can be very useful ** 
+-------------------------------------------------------------------------------------------------
+align-items aligns on the CROSS AXIS this is why their behavior changes when direction changes 
+also referred to as cross-axis alignment. We can get vertical alignment in a flex container using the "align-items" property. 
+available options for align-items: center, flex-start (top), flex-end (bottom), stretch. baseline
+Stretch - will stretch the item to fit the full height of the container, regardless of how much content it contains. A common use of this is to create equal-height columns with a variable amount of 
+content. 
+baseline is not super useful most of the time and the other ones behave similar to the justify-content just for vertical alignment opposed to horizontal. 
+-------------------------------------------------------------------------------------------------
+gap property: 
+similar to margin gap adds a space between flex items. 
+Defined in the flex container 
+new property but very useful!
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+flex-wrap: wrap; is a property that allows items within a flex container to wrap around to a new line if they dont fit. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Direction: refers to whether a container renders its items as horizontally or vertically. Flexboxes allow us to easily transform rows into columns with 1 line of CSS. 
+
+default direction is set to row (horizontal)
+
+flex-direction: column; will orient our flexbox vertically. This is very useful for making responsive layouts eg pages that change for desktop or mobile. Mobile sites are often 1 big vertical 
+column where as desktop sites are usually horizontal layouts. 
+** when you change the direction you also rotate the direction of the justify-content property meaning it now refers to the containers vertical alignment not horizontal. So to center an 
+element that we changed the direction of we need to define an align-items property. 
+
+Order: the flex-direction property also gives us control over the order in which the items appear using the row-reverse and column-reverse properties. Note if we are using multiple rows within 
+the flex container each individual row will be reversed. Not all the elements at once. 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FLEX ITEM MANIPULATION: 
+
+Flex Item Order: 
+adding an order property to a flex ITEM defines its order in the container without affecting surrounding items. Its default value is 0 and increasing or decreasing this value moves the item
+to the right or left respectively. Order will walk across different items or column boundaries unlike row-reverse and column-reverse. This can change the place of 2 items without changing 
+any of the other items. Switching the right most item to -1 and the left most item to 1 will change their places while leaving the between elements untouched. 
+---------------------------------------------------------------------------------------
+Flex Item Alignment: 
+if we want certain flex items to have their own alignment schemes we can easily achieve this using the "align-self" property. 
+The same values as align-items apply for align-self: center, flex-start, flex-end, stretch, baseline 
+---------------------------------------------------------------------------------------
+Flexible Items: 
+the "flex" property is shorthand for 3 other properties allowing us to more quickly and simply perform dynamic sizing. Note they will shrink and grow at the same rate if we use "flex"
+"flex-grow" sets the growth factor of an item
+"flex-shrink" sets the shrink factor of an item 
+"flex-basis" sets the original size of an item - will change based on direction eg if row it will set orignal width if column it will set original height.
+we can also use flex as "flex: 1 1 0" first num is growth second is shrink last is basis. flex can also be used with the auto keyword which defaults to "flex: 1 1 auto"
+we can also use px to define these properties eg "flex: 1 20px;" or "flex: 1 1 100px" which can be useful to make things a certain initial size.
+
+flex initial is flex: 0 1 auto and flex none is flex: 0 0 auto. Both size the item according to its width and height properties but none is fully inflexible where initial will shrink to the 
+min size of the container.  
+
+Flex items are flexible meaning they can stretch or shrink to match the width of their containers. The "flex" property defines the width of individual items in a flex container by allowing
+them to have flexible widths. It works as a weight that tells the flex container how to distribute extra space to each item. For example an item with "flex: 2;" will grow twice as fast as an 
+item with "flex: 1;". If all items have a flex value of 1 they will all be the same size to makeup the size of the container. 
+We can combine flexible boxes with fixed-width ones. "flex: initial;" falls back on an items explicit width. This allows us to combine static and flexible boxes in complex ways. 
+Flexible items will be dynamically resized as the window size changes where fixed width items will remain at a constant size the whole time. 
+
+many websites have a fixed-width sidebar (or multiple sidebars) and a flexible content block containing the main text of the page.
+
+generally flex should be set to auto, initial, none of a positive unitless number. 
+---------------------------------------------------------------------------------------
+Flex Items and Auto Margins: 
+Auto margins are special for flexboxes, they behave as a sort of divider for flex items in the same container. They can be an alternative to adding an extra <div> when trying to align a group 
+of items to the left/right of a container. 
+Auto margins eat up all of the extra space of a flex contaienr, so instead of distributing items equally, it will move the item and all items after it to the respective area defined by the margin. 
+
+
+
+
+

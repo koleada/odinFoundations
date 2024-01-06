@@ -8,51 +8,68 @@
 
 .mainLink {
     font-size: 22px;
-    color: deeppink;
+    color: darkorchid;
 }
 
 a {
-    color: deeppink;
+    color: darkorchid;
 }
 
 .mainImage {
     width: 95%;
     height: auto;
-    
+
 }
 
-img{
+img {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-macImg{
+macImg {
     width: 500px;
     height: auto;
 }
 
-h1{
+h1 {
     font-weight: 600px;
     font-size: 40px;
 }
 
-#macHeader{
+#macHeader {
     color: goldenrod;
 }
 
-.macBody{
+.macBody {
     background-color: yellow;
 }
 
-.desc{
-    
+.desc {
+
     font-weight: bold;
 }
 
-
-*{
+ul {
     text-align: center;
-    
+    display: inline-block;
+    margin: auto;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
 }
 
+.mainUl {
+    border: 2px solid rgb(174, 0, 255);
+
+}
+
+.macUl {
+    border: 2px solid rgba(245, 92, 32, 0.445);
+}
+
+* {
+    text-align: center;
+
+}

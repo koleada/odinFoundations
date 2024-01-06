@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+img {
+  width: 600px;
+  /* Added to dynamically center the main image since it is not directly in a flexbox*/
+  margin: auto; 
+}
+
+button {
+  font-family: Roboto, sans-serif;
+  border: none;
+  border-radius: 8px;
+  background: #eee;
+}
+
+input {
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 8px 24px;
+  width: 400px;
+  margin-bottom: 16px;
+}
+
+/* Header, footer, ul, li, a styles were all added to style the header and footers and deal with the weirdness of the ul */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer {
+    display: flex;
+    background-color: #eeeeee;
+    align-items: center;
+    justify-content: space-between;
+    
+    
+}
+ul {
+    list-style: none;   
+    padding: 10px;
+}
+li {
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+   
+}
+a {
+    color: #727575;
+    text-decoration: none;
+}
+
+/* This dealt with the search feature */
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+

@@ -1,0 +1,146 @@
+The most important skills to master in regards to CSS is positioning and layout! 
+IN this section well learn about the box model and making sure elements are the right size with margin, padding and boarders. 
+
+***In dev tools if the select an element in the elements tab and on the right side of dev tools press "computed" this will show the box model for the element and the sizes or values used for
+the content itself, padding, border and margin. This is the best way to see exactly what is going on in terms of the box model and will help us get familiar with using the box model***
+
+The Box Model: 
+Every single element on a webpage is a rectangular box (at least in CSS), boxes can have other boxes within them and can sit alongside one another. 
+You can see this in action by putting a boarder around every element using the following CSS: 
+
+* {
+    boarder: 2px solid red;
+}
+
+you could also use the dev tools to edit the css of a webpage and add the same code to see the boxes on any webpage you want. 
+
+Padding, margin and border are all way to manipulate the size of the boxes and the spacing between them. 
+
+The most inner part of the box model is the content of the element. Next comes padding which is the amount of space between the content and the outer edge (border) of the box. Next in the box
+model is border, this is essentially the outline of the box and can be made larger. Border wraps around our padding if applied. The outermost part of the box model is margin. This is the size 
+between our border and other elements or the top, bottom or sides of the webpage. 
+
+
+padding increases the space between the border of a box and the content of the box. ex: most button use padding so the button is larger then the content itself, used to make background bigger 
+margin increases the space between the borders of a box and the borders of adjacent boxes. Mostly sed to space nodes 
+border adds space (even if it’s only a pixel or two) between the margin and the padding. Mostly used for cosmetic styling  
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Margin in Depth: 
+margin - defined the outermost portion of the box model, creating space around an element, outside of any defined borders. 
+
+Margins are set using lengths, %s, or the keyword auto and can have negative values. 
+
+margin accepts up to 4 values as shown below: 
+.box {
+    margin: <margin-top> || <margin-right> || <margin-bottom> || <margin-left>
+}</margin-left></margin-bottom></margin-right></margin-top>
+
+if fewer then 4 values are defined the missing ones are assumed based on the given ones. The two rules below have the same results: 
+.box {
+  margin: 0 1.5em;
+}
+
+.box {
+  margin: 0 1.5em 0 1.5em;
+}
+
+if only one value is defined it sets all 4 margins to the same value, if 3 values are defined, it is margin: [top] [left and right] [bottom]
+
+alternatively, each margin can be declared using longhand: 
+.box {
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+--------------------------------------------------------------------------
+AUTO & CENTERING: 
+Each margin property can accept a value of auto which tells the browser to basically define the margin for you. Most of the time a value of auto will be equivalent to a value of 0 or else whatever
+space is available on that side of the element.
+Auto is very useful for horizontal centering if used as follows: 
+.container {
+  width: 980px;
+  margin: 0 auto;
+}
+here the element is given a specific width and the left and right margins are set to auto making it centered horizontally. Without this specified width the auto would basically have no effect 
+as they would set the left and right margins to 0 or to whatever space is available in the parent element. **NOTE** auto is only useful for horizontal centering not vertical. 
+--------------------------------------------------------------------------
+Collapsing Margins: 
+
+Shorthand- if 2 elements that share a margin (eg next to each other and both have defined margin) the larger of these 2 conflicting values will be used for the conflicting margin.
+
+Vertical margins on different elements that touch each other (thus have no content, padding, or borders separating them) will collapse, 
+forming a single margin that is equal to the greater of the adjoining margins. This does not happen on horizontal margins (left and right), only vertical (top and bottom).
+
+Take the following html and CSS as an example: 
+HTML:
+<h2>Collapsing Margins</h2>
+
+
+
+<p>Example text.</p>
+
+CSS: 
+h2 {
+  margin: 0 0 20px 0;
+}
+
+p {
+  margin: 10px 0 0 0;
+}
+
+We would expect the margin between these to be 30px since the h2 element has a bottom margin of 20px and the p element has a top margin of 10px but it is actually only 20px due to the margin collapse. 
+
+Although collapsing margins may seem unintuitive they are useful for a few reasons:
+- they prevent elements from adding extra usually undesirable vertical margin space 
+- all for a more consistent approach to declaring universal margins across page elements. For example, headings commonly have vertical margin space, and so do paragraphs. If margins didn’t 
+collapse, headings that follow paragraphs (or vice-versa) would often require resetting the margins on one of the elements in order to achieve a consistent amount of vertical spacing.
+- margin collage also applies to nested elements for example: Here, the paragraph element has a top margin set at 30px, and is nested inside a div element with a top margin of 40px. In addition, the h2 element has a bottom margin of 20px.
+
+Again, common sense would suggest that the total vertical margin space here would be 90px (20px + 40px + 30px), but instead the margins all collapse into a single 40px margin
+(the highest of the three). This is helpful in most cases since there is no need to redefine any of the top margins to remove the extra vertical space.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Standard vs Alternative box model:
+
+standard box model - if given an inline-size and block size (or hight and width), any padding or border is simply added to the defined size.
+
+Alternative box model - if given an inline-size and block size (or hight and width), any padding or border is included in this defined size.
+
+when styling an element with a defined border and/or padding, the hight and width properties will only effect the actual size of the content not the border and/or padding. 
+To change this so that the hight and width properties represent the content+border+padding we can add the following:
+.box {
+    box-sizing: border-box; 
+}
+This "turns on" the alternative box model for the box class.
+now if we define a height and width for the box class the hight and width will be the content+padding+border. Specifically the padding and border size will be subtracted from the hight and width
+defined and the remaining number of px will be the size of the content.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Display Type: 
+** adding "display:flex;" to the css rules of an element such as a ul allows the children elements to be spaced out on one line all next to each other opposed to inline where each element 
+has its own "line" ** changing the value of display can change whether the outer display type is block or inline, therefore changing the way it displays other elements in the layout.
+
+outer display: 
+Block and inline layout is the default way things behave on the web. By default and without any other instruction, 
+the elements inside a box are also laid out in normal flow and behave as block or inline boxes.
+
+block- if a box has an outer display type of block, then:
+-The box will break onto a new line.
+-The width and height properties are respected.
+-Padding, margin and border will cause other elements to be pushed away from the box.
+-If width is not specified, the box will extend in the inline direction to fill the space available in its container. 
+-In most cases, the box will become as wide as its container, filling up 100% of the space available.
+by default some elements have a display type of block including h1 and p
+
+inline - If a box has an outer display type of inline, then:
+-The box will not break onto a new line.
+-The width and height properties will not apply.
+-Top and bottom padding, margins, and borders will apply but will not cause other inline boxes to move away from the box.
+-Left and right padding, margins, and borders will apply and will cause other inline boxes to move away from the box.
+Some HTML elements, such as <a>, <span>, <em> and <strong> use inline as their outer display type by default.
+---------------------------------------------------------------------------------------------
+inner display: 
+
+You can change the inner display type for example by setting display: flex;. The element will still use the outer display type block but this changes the inner display type to flex.
+Any direct children of this box will become flex items and behave according to the Flexbox specification.
+When you move on to learn about CSS Layout in more detail, you will encounter flex, and various other inner values that your boxes can have, for example grid.

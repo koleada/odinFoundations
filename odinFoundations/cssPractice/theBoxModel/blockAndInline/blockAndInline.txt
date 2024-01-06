@@ -1,0 +1,22 @@
+Different display types have unique box models, we can modify the box calculation by changing the display property. 2 box types - block and inline, which determine element 
+behavior and interaction. The display property controls how HTML elements appear on the webpage. 
+
+Most HTML elements are block elements. IN other words by default their style is display: block;  block elements appear on w page stacked on top of one another, each new element starting on 
+its own new line. Inline elements do not start on a new line, they are displayed next to (inline) whatever elements they are placed beside. An example of an inline element is the <a> tag if
+it is in the middle of a paragraph it will act as part of the paragraph. The link will sit alongside the text. 
+
+Padding and margin behave different on inline elements, generally you don't want to put extra padding or margin on inline elements.
+
+inline-block: a sort of middle ground between block and inline. Elements with this display type behave like inline elements but with block style padding and margin. 
+Useful to know but likely will more often use flexbox to line up a bunch of boxes. 
+
+Divs and Spans: Essentially generic boxes that can contain anything. Very useful for grouping elements we want to share a style or to correctly position them on a page. 
+
+div: Div is a block-level element by default. It is commonly used as a container element to group other elements.
+Divs allow us to divide the page into different blocks and apply styling to those blocks.
+
+span: Span is an inline-level element by default. It can be used to group text content and inline HTML elements
+for styling and should only be used when no other semantic HTML element is appropriate.
+
+** before changing the display or any styles at all it is best to first create a webpage made up of well structured HTML that is readable with normal flow (eg default display type) then changing
+if needed **
