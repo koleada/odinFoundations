@@ -1,0 +1,85 @@
+Data-Types in JS: 
+
+Strings:
+must be wrapped in " " when defining (single quotes, double quotes or backticks all work fine no mismatching)
+
+backticks are special, strings defined w backticks are called template literals. You can declare them over multiple
+lines and embed JavaScript variables or expressions in them using ${}.
+ex: 
+const name = "Chris"; 
+const greeting = `Hello, ${name}`;
+console.log(greeting); // "Hello, Chris"
+or 
+const one = "Hello, ";
+const two = "how are you?";
+const joined = `${one}${two}`;
+console.log(joined); // "Hello, how are you?"
+
+**again, this can only be done with template literals**
+
+ex of an expression in a template literal:
+const song = "Fight the Youth";
+const score = 9;
+const highestScore = 10;
+const output = `I like the song ${song}. I gave it a score of ${
+  (score / highestScore) * 100
+}%.`;
+console.log(output); // "I like the song Fight the Youth. I gave it a score of 90%."
+
+as mentioned template literals can also be declared across multiple lines and will respect the new line as shown:
+const newline = `One day you finally knew
+what you had to do, and began,`;
+console.log(newline);
+
+/*
+One day you finally knew
+what you had to do, and began,
+*/
+to have the equivalent output in a normal string we would need to use the new line operator (\n)
+
+to use quotes in a string we can escape them by prefacing with \ or surround this string in one of the other characters.
+ex: const goodQuotes1 = 'She said "I think so!"';
+
+come with a bunch of normal methods were used to working with
+also come with some HTML Wrapper Methods which take in a string and display it in HTML tag therefore giving that
+HTML characteristic to the string very cool! anchor(), big() uses big font, blink() displays a blinking string, 
+bold() and many more look them up to play with. 
+--------------------------------------------------------------------------------------------------------------------
+Conditionals:
+standard if...else is included in JS. Syntax if(){....}.... else {....}
+else if () {.....} is also included and works the same as normal. 
+
+** when testing a boolean value eg using and if, else statement any value that is not false, undefined, null, 0, NaN 
+or and empty string returns true when tested as a conditional statement** 
+
+&& , || - and, or operators are also included and function as normal. 
+
+Switch statements: 
+Switch statements are great for when were dealing with a large number of conditions. 
+They take a single expression or value as input and look through choices until they find one that matches that value,
+executing the corresponding code. 
+Syntax: 
+switch (expression) {
+  case choice1:
+    // run this code
+    break;
+
+  case choice2:
+    // run this code instead
+    break;
+
+  // include as many cases as you like
+
+  default:
+    // actually, just run this code
+    break;
+}
+switch keyword denotes a switch statement, case followed by a value and a ; then right after is the code to run if that
+is the matching case, once break is hit the browser will leave the switch statement and continue on. Default will
+be ran if no other choices match (does not need break since its at the end already)
+
+Ternary operator ? : 
+tests a cond, returns one value/exp if true and the other if false. Can be much more concise then if, else. 
+condition ? run this code : run this code instead
+
+

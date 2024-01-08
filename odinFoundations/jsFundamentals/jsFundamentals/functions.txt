@@ -1,0 +1,68 @@
+Functions:
+Syntax: 
+function functionName(args){
+    returns args + 1;
+}
+console.log(functionName(1)) // returns 2
+or we could replace return with console.log. 
+
+we can also add a default parameter to a function which will be used if no other value is provided:
+function hello(name = "Chris") {
+  console.log(`Hello ${name}!`);
+}
+
+hello("Ari"); // Hello Ari!
+hello(); // Hello Chris! 
+
+---------------------------------------------------------------------------------------------------------------
+Anonymous Functions and Arrow Functions:
+
+Anonymous Functions are functions without names as shown below:
+normal:                                         Anon:
+function myFunction() {                         (function () {
+  alert("hello");                                 alert("hello");
+}   )();                                        });
+                                                
+these are used usually when a function expects to receive another function as a parameter.
+for example if were adding an event listener to listen for a key press and then logging what key was pressed we could
+write it normally as follows:
+function logKey(event) {
+  console.log(`You pressed "${event.key}".`);
+}
+
+textBox.addEventListener("keydown", logKey);
+
+or with an Anonymous function like this: 
+textBox.addEventListener("keydown", function (event) {
+  console.log(`You pressed "${event.key}".`);
+});
+
+
+Arrow Functions:
+Basically an alternative format for an anonymous function looks like a lambda expression
+same little function as above just using arrow functions:
+
+textBox.addEventListener("keydown", (event) => {
+  console.log(`You pressed "${event.key}".`);
+});
+
+a more simple example of an Arrow Function: 
+let sum = (a, b) => a + b;
+
+/* This arrow function is a shorter form of:
+
+let sum = function(a, b) {
+  return a + b;
+};
+*/
+
+if you use curly braces in your arrow function you need a return statement.
+ex: 
+let sum = (a, b) => {  // the curly brace opens a multiline function
+  let result = a + b;
+  return result; // if we use curly braces, then we need an explicit "return"
+};
+
+alert( sum(1, 2) ); // 3
+
+

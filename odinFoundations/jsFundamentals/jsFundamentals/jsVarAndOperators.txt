@@ -1,0 +1,96 @@
+Using JS in a webpage:
+<script> is the way to reference JS in your html. 
+
+You can simply write your JS right in the HTML as shown below:
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+    console.log("Hello, World!")            ** logs (prints) "Hello, World!" to the console **
+  </script>
+</body>
+</html>
+- - - - - - - -- - - - - - - - - - - - - -- 
+alternatively we can reference an external JS file again using the script tag as shown below: 
+  <script src="javascript.js"></script>
+
+reference to external JS is useful for complex/ long code where as inline JS is useful for quick snippets of code. 
+------------------------------------------------------------------------------------------------------------------
+Variables: 
+
+nums typed without quotes, strings typed with. 
+
+As of recently there are now 3 ways to define variables in JS. Previously there was just 1 which was the "var" keyword.
+Now we are able to use "let" and "const" as well. LET IS WHAT WE WILL MOSTLY BE USING. 
+
+Currently we taught to use LET instead of var. There is a slight difference between the 2 we will cover later. For now
+just use "let".
+
+we can define multiple variable together by doing the following: 
+let user = 'John',                                  let user = 'John'
+  age = 25,                     or                    , age = 25
+  message = 'Hello';                                  , message = 'Hello';  
+
+variables must contain only letters, digits, $ or _ and of course not start with a number. 
+
+reserved words (cannot be used as var names) - let, class, return and function
+------------------------------------------------------------------------------------------------------------------
+CONST:
+Const is used for constant (unchanging) variables, these can not ever be chnaged and therefore the name cannot be
+reused for other variables.
+It is widespread best practice to use all uppercase letters for difficult-to-remember values that will never change 
+after the code is executed for exmaple if we are changing the color of parts of our page and need to store a bunch of 
+hexadecimal values in our code. We would define them as: const COLOR_RED = "#F00"; these varibales will not be changed 
+after execution and have them in a variable makes them much easier to identify as opposed to jsut leaving them in hex 
+and adding those raw hex values where we need them. It also is much easier to type then the raw hex values which will
+prevent error. It makes the code much more readable as well. 
+------------------------------------------------------------------------------------------------------------------
+**if we don't add "use strict"; to our code, we can define variables without using let or any other keyword.**
+if we do add use strict in quotes to our code this is no longer possible and will result in an error
+------------------------------------------------------------------------------------------------------------------
+
+Operators: 
+
++,-,*, / all the basic ones are the same add, sub, mult, div
+also have the modulus operator as usual %
+** is exponentiation eg 5**2 = 25 can also use Math.pow(x,y)
+++ is increment 
+-- is decrement 
+
+we also have assignment operators:
++=
+-=
+*=    x*=3; -> x = x*3
+/=    x/=5; -> x = x/5;
+
+javascript has a built in Numebr object which provided a bunch of methods to help work with numbers. 
+-toFixed() rounds the number to a fixed number of decimal places. eg lotOfDec=1.76635; lotOfDec.toFixed(2) would log 
+1.77 in the console. 
+
+when taking in user input from something like a form, if the user needs to enter a numeric value it will often be 
+stored a string, we can convert string values to a number by passing it into the Number constructor. This is useful
+so we can use the operators on the number. For exmaple if we have a string type value of 74 and try to add 3 to this
+the computer will take it as the concatenation operator because it thinks its a string so we'd get 743. 
+let myNum = "74";
+myNum = Number(myNum); 
+**We can also convert to a number quickly by prefacing the string we want to be a number with a + for example: 
+alert( +apples + +oranges ); // 5 this is called the urary operator
+can also use parseInt() to parse a number
+
+Comparison Operators: 
+=== - strict equality tests whether the left and right values are identical to one another 
+!== - strict non-equality reverse of above
+!=, == work as normal 
+<, >, <=, >= work as normal
+
+the difference between == and === (and their reverses) are that == test whether the values are the same but not 
+whether their data-types are the same. === test for equality and their data-types which will ultimately result in fewer
+errors so use them!
+
+NaN - not a number, if you try to do math with a string youll get this error. Use the isNaN() method to check if your
+dealing with a number, or not. 

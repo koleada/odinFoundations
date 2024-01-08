@@ -1,0 +1,100 @@
+These notes are for chrome dev tools!
+-----------------------------------------------------------------------------------------------------------
+BASICS OF NAVIGATION:
+you can press the little arrow in a box (inspect)  button on the top left of chrome dev tools to go go into investigate mode (name i made up). This allows one to hover over any node
+on the page and click it if of interest. This will then automatically bring it up in the elements page of dev tools. 
+Inspecting a node is the first step of viewing and changing a nodes content or style.
+
+We can also navigate elements using the arrow keys. Up will go up to the previous element down will go down to the next element. Right arrow key will expand an element left will close it or
+bring you to the parent element if already closed. 
+
+Right clicking on an element within the elements page of dev tools will allow us to select the scroll into view option which will bring the element into our view on the actual webpage. 
+-----------------------------------------------------------------------------------------------------------
+RULERS:
+crtl+shift+p will enable rulers on hover. This helps us see the exact size of an element measured in pixels. 
+-----------------------------------------------------------------------------------------------------------
+DOM MANIPULATION: 
+We can search the DOM tree with ctrl+F allowing us to search for specific strings, elements or code. 
+
+You can edit objects or elements in the DOM as you go to see how the changes affect the page. Right click on an element in the DOM and select add attribute to add an attribute to the html. 
+this could be a class, style, id or any other attribute. We can alternatively select edit as HTML to change the HTML in real time, we could change elements, content or the like.  
+We can also drag and drop elements in dev tools to change their location on the webpage. We can also double click on an element or its contents and simply type the changes we wish to make.
+Edit as html allows us to add new elements into the DOM or remove/ change existing ones.
+-----------------------------------------------------------------------------------------------------------
+DUPLICATE:
+we can duplicate a node by right clicking and selecting duplicate element. shift+alt+down arrow also duplicates nodes. 
+-----------------------------------------------------------------------------------------------------------
+SCREENSHOT OF NODE:
+Right click -> capture node screenshot will save a picture of a specific node. 
+-----------------------------------------------------------------------------------------------------------
+FORCE STATE:
+Force state -> force nodes to remain in states such as :active, :hover, :visited, and :focus-within. right click and select force state to force the state of the node. 
+-----------------------------------------------------------------------------------------------------------
+HIDE + DELETE:
+Click on a node in the elements tab, press H or right click and select hide element to hide the element. 
+
+Delete element - right click -> delete element or ctrl+Z
+-----------------------------------------------------------------------------------------------------------
+ACCESSING NODES IN CONSOLE:
+"DevTools provides a few shortcuts for accessing DOM nodes from the Console, or getting JavaScript references to them." When you click on a node or somehow inspect it youll see "== $0" 
+next to the selected node. This means that node can be referenced in the console using the var $0. Selecting a node then entering $0 in the console will output the html associated with the 
+selected node. 
+
+If we will have to reference the same node multiple times we can also store it as a local variable. To do this right click on the desired node and select store as global variable. Moving over
+to the console after doing so will show us the reference to the node is store in the variable temp1. If we need another global variable it will be stored as temp2 and so on. 
+
+We can also copy the JavaScript path to a node by right clicking an element in the DOM tree selecting copy > copy JS path. This will automatically copy a document.querySelector() expression 
+that is a reference to the node. Again, if we enter this copied expression into the console is will result in the HTML that corresponds to the node we selected.
+-----------------------------------------------------------------------------------------------------------
+
+Difference Between HTML and the DOM:
+HTML is basically the initial contents of the page, whereby the DOM is a representation of the pages current nodes in a similar tree like structure. Often JavaScript can be used to alter the HTML 
+nodes on a page resulting in the DOM being altered in the same way. 
+-----------------------------------------------------------------------------------------------------------
+CSS in DevTools:
+Of course know selecting an element and navigating to the styles pane will show us the CSS styles associated with an element,
+hovering over a specific rule will give us a short blurb about what the rule is and provide a link to MDN CSS 
+reference for that specific property. 
+We can add rules right from dev tools (they will go away when page is refreshed) or take rules away. 
+We also see a representation of the box model displaying hight and width of the element, padding, border and margin.
+If were using custom properties (properties dynamically altered w JS) we can hover over these to see their current values. 
+If we go to the computed tab(right next to styles) we can see a list of all properties that are applied to the element.
+we can search an elements CSS in the styles pane or the computed pane
+-----------------------------------------------------------------------------------------------------------
+Mobile Device Simulation: 
+To simulate viewing a webpage from a mobile device we just click the toggle device button on the top left of devtools.
+We can then change the simulated dimensions of the screen.
+we can also use the bar on the top to choose from many preset screen sizes, S,M,L phone, tablet, Laptop, L laptop, 4k,
+there is a rotate button as well once we are in mobile device simulation to simulate landscape mode for all of the different devices.
+-----------------------------------------------------------------------------------------------------------
+Console Overview: 
+Logging in the console is very useful for making sure your code is working as expected or to check the value of a variable at a certain time
+You can also use the console to interact/ change the page your inspecting. 
+
+document.querySelector() is used to select HTML elements with JavaScript we can then alter these elements in various ways.
+one way to alter them is by using innerText, ex: document.querySelector("#button1").innerText = "Hey yo!"; 
+which would select the element with an ID of button1 and change the inner HTML to Hey yo!
+
+we can use console.warn() to log a warning displayed in yellow or console.error() to log an error displayed in red.
+we can also press the default levels drop down to filter which "levels" (log,warn,error) we want to see in the console.
+we can also filter console messages by pressing the play button in box icon in the top left (under inspect and mobile sim buttons)
+warning is displayed when the console sees something that may cause an error.
+
+clear console using button next to the play button in the box
+
+any object can be logged, arrays, strings nums etc.
+to more clearly view and an array we can use console.table(arrayName) to view the array as a nice table. 
+
+we can log HTML by doing console.log(document.head) head can be replaced with body or some other things
+console.dir() will display the same information but in JSON format
+
+We can use console.group() to make a visual group of items in the console. After calling this we can continue to log as many
+items as we want and they will continue to be grouped until be call console.groupeEnd(). console.groupCollapsed() does the same thing but the group is collapsed by default. 
+also note we can pass in a string to the group("Kole") method which will essentially name the group.
+also note if we call console.group() again while were already in a group this will nest the new group within the first one.
+
+console.count(), console.countReset() will count and log the number of times a function has been invoked
+
+console.trace() will print stack trace 
+
+console.time(), console.timeEnd() to count the time between calling the 2 functions. 

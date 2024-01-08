@@ -1,0 +1,9 @@
+<ul>'s are weird
+they have some unintuitive default properties we will often need to deal with to get our desired layout. 
+1-by default they have padding and margin, we can remove this by adding our own defined padding and margin (even if its just 0)  *** VERY IMPORTANT THIS WILL CAUSE ISSUES
+2-By default they include the dots preceding each child element. To get rid of these we add the property "list-style: none;"
+
+Lastly, by default the children of a ul are vertical, to change this we need to change the CHILDREN ELEMENTS display to inline (display: inline;). If the ul has 3 <li> elements has children,
+we would have to add that property to all of them. 
+
+side note: to remove the underline that comes default with <a> add the style "text-decoration: none;"
