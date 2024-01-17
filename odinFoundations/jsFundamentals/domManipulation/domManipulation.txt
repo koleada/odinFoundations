@@ -1,0 +1,157 @@
+******************************************* USE DEFER IN EVERY SINGLE <SCRIPT> !!!!! ******************************************************************
+DOM (Document Object Model) - as we know, is a tree like representation of all current elements of a webpage, a tree of nodes that changes based on how their arranged'
+in the corresponding HTML. 
+
+Can be useful to think of it as a family tree with parent nodes and child nodes each on their own branch. 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Selectors: 
+Selectors are used to "select" the node you want to work with. We can use the CSS selectors we learned about earlier to access different elements of the webpage using
+JavaScript. Relationship properties (ex firstElementChild or lastElementChild) can also be used to achieve the same.
+-------------------------------------------------------
+**ex of using selectors with JS to select elements: 
+
+**basic html for our example**
+<div id="container">
+  <div class="display"></div>
+  <div class="controls"></div>
+</div>
+
+const container = document.querySelector('#container');
+// selects the #container div (using its ID)
+
+console.dir(container.firstElementChild);                      
+// selects the first child of #container => .display
+
+const controls = document.querySelector('.controls');   
+// selects the .controls div (using its class)
+
+console.dir(controls.previousElementSibling);                  
+// selects the prior sibling => .display
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+DOM methods: 
+HTML code gets parsed by a web browser and converted to the DOM. One primary difference is these nodes are objects with their own build int properties and methods.
+These properties and methods are what well mainly use to manipulate the webpage w/ JavaScript. 
+-----------------------------------------------------
+Query Selectors: 
+-element.querySelector(selector) - returns a reference to the first match of selector.
+-element.querySelectorAll(selectors) - returns a “nodelist” containing references to all of the matches of the selectors.
+
+** note we can use document to represent the entire DOM for these methods, or we can use specific classes or IDs **
+There are many other more specific queries that offer potential marginal benefits that we can use later on, these are most important for now.
+
+** when using querySelectorAll this does NOT return an array, it returns a nodelist which functions similar but does not have many of the built in array methods.
+   however, if we have problems with this we can use the Array.from() method to convert our nodelist into an array or the "spread operator" (syntax: spread(...) (look it up for more details))
+-----------------------------------------------------
+Element Creation: 
+document.createElement(tagName, [options]); - creates a new element of tag type tagName. [options] are additional parameters we can add to the new element (well learn more about these later)
+ex: const div = document.createElement('div');
+
+this function does NOT immediately add the new element to the DOM it simply store it in memory allowing us to manipulate it, add styles, classes/ ids, text etc before place it on the page. 
+
+Placing elements in the DOM: 
+-parentNode.appendChild(childNode) - appends childNode as the last child of parentNode. **note do not use " " around childNode
+-parentNode.insertBefore(newNode, referenceNode) - inserts newNode into parentNode before referenceNode.
+
+Removing elements from the DOM: 
+-parentNode.removeChild(child) - removes child from parentNode on the DOM and returns a reference to child.
+-----------------------------------------------------
+Altering Elements: 
+ex:
+const div = document.createElement('div');                     
+// creates a new div referenced in the variable 'div'
+
+Adding Inline Styles to this new element:
+div.style.color = 'blue';                                      
+// adds the indicated style rule
+
+div.style.cssText = 'color: blue; background: white;';          
+// adds several style rules
+
+div.setAttribute('style', 'color: blue; background: white;');    
+// adds several style rules
+** see https://domenlightenment.com/#6.2 ofr more info on getting, setting & removing inline CSS properties ** 
+
+** if trying to access CSS rules from JS we need to use camelCase or [] instead of the normal dash(-) we see in CSS ** ex below: 
+div.style.background-color // doesn't work - attempts to subtract color from div.style.background
+div.style.backgroundColor // accesses the div's background-color style
+div.style['background-color'] // also works
+div.style.cssText = "background-color: white;" // sets the div's background-color by assigning a CSS string
+-----------------------------------------------------
+Editing Attributes: 
+div.setAttribute('id', 'theDiv');                              
+// if id exists, update it to 'theDiv', else create an id with value "theDiv"
+
+div.getAttribute('id');                                        
+// returns value of specified attribute, in this case "theDiv"
+
+div.removeAttribute('id');                                     
+// removes specified attribute
+
+** see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes for more info on available attributes. ** 
+-----------------------------------------------------
+Working With Classes: 
+div.classList.add('new');                                      
+// adds class "new" to your new div
+
+div.classList.remove('new');                                   
+// removes "new" class from div
+
+div.classList.toggle('active');                                
+// if div doesn't have class "active" then add it, or if it does, then remove it
+** it is often standard (and cleaner) to toggle a CSS style rather then adding and removing inline CSS ** 
+-----------------------------------------------------
+Adding text content: 
+div.textContent = 'Hello World!'                               
+// creates a text node containing "Hello World!" and inserts it in div
+** preferred over the below method ** 
+-----------------------------------------------------
+Adding HTML content: 
+div.innerHTML = '<span>Hello World!</span>';                   
+// renders the HTML inside div
+** Note that textContent is preferable for adding text, and innerHTML should be used sparingly as it can create security risks (XSS, HTML injection) if misused. **
+-----------------------------------------------------
+
+Example of adding element, manipulating it and appending it to the parent node: 
+
+<!-- your HTML file: -->
+<body>
+  <h1>
+    THE TITLE OF YOUR WEBPAGE
+  </h1>
+  <div id="container"></div>
+</body>
+
+// your JavaScript file
+const container = document.querySelector('#container');
+
+const content = document.createElement('div');
+content.classList.add('content');
+content.textContent = 'This is the glorious text-content!';
+
+container.appendChild(content);
+
+first we get a ref to the container div already created in the HTML<, then we create a new div stored in the var content, we then add a class and text to the content div
+and finally append it to the container div. 
+
+After we run this the DOM will look like this: 
+** note this does not alter the actual HTML just the DOM **
+<!-- The DOM -->
+<body>
+  <h1>
+    THE TITLE OF YOUR WEBPAGE
+  </h1>
+  <div id="container">
+  	<div class="content">
+      This is the glorious text-content!
+    </div>
+  </div>
+</body>
+
+**** important notes: 
+Your JavaScript, for the most part, is run whenever the JS file is run, or when the script tag is encountered in the HTML. If you are including your 
+JavaScript at the top of your file, many of these DOM manipulation methods will not work because the JS code is being run before the nodes are created in the DOM.
+The simplest way to fix this is to include your JavaScript at the bottom of your HTML file so that it gets run after the DOM nodes are parsed and created.
+or
+We could just include a link to the external JavaScript file (be sure to include the keyword "defer" right after the src property to make sure its run after content is loaded.)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------

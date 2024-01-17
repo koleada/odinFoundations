@@ -1,0 +1,78 @@
+Collections are an integral part of programming used to hold data. Collections can be arrays or other objects used to hold data
+JS implements many different types of loops specifically for looping collections as this is very common. 
+----------------------------------------------------------
+for...of loop is the basic tool for looping collections
+syntax:
+const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
+
+for (const cat of cats) {
+  console.log(cat);
+}
+
+In this example, for (const cat of cats) says:
+-Given the collection cats, get the first item in the collection.
+-Assign it to the variable cat and then run the code between the curly braces {}.
+-Get the next item, and repeat (2) until you've reached the end of the collection.
+----------------------------------------------------------
+map() and filter() are more specialized loops for collections, often used with function expressions
+
+map() is used to do something to each item in a collection and create a new collection containing the changed items
+example:
+function toUpper(string) {
+  return string.toUpperCase();
+}
+
+const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
+
+const upperCats = cats.map(toUpper);
+
+console.log(upperCats);
+// [ "LEOPARD", "SERVAL", "JAGUAR", "TIGER", "CARACAL", "LION" ]
+
+here we pass in the toUpper method to the map() function resulting in a new array containing the same item just with the toUpper() method applied to each.
+----------------------------------------------------------
+filter() is used to test each item in a collection and create a new collection containing only the items that match
+function lCat(cat) {
+  return cat.startsWith("L");
+}
+
+const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
+
+const filtered = cats.filter(lCat);
+
+console.log(filtered);
+// [ "Leopard", "Lion" ]
+
+looks very similar to map but we pass in a boolean value resulting in a new array containing only items that start with "L"
+--------------------------------------------------------------------------------------------------------------------
+for loop: 
+standard for loop similar to java 
+for(initializer; condition; final-expression) {
+    // code to run 
+}
+** note if we use let to declare the starting value in a for loop, their scope is only for the loop itself, outside the loop the varibale will not be in scope
+** varibales declared with var are not local to the loop i.e. they are in the same scope the for loop is in 
+
+ex for (let i = 0; i < 10; i++) {}
+
+can of corse be used for looping collections but it is much better to use for...of so we dont have to do i>array.length-1
+--------------------------------------------------------------------------------------------------------------------
+break statement can be used to exit out of a loop and move forward to any remaining code. Still not the best solution
+----------------------------------------------------------
+continue is also similar to normal java, allows us to skip to the next iteration of the loop 
+--------------------------------------------------------------------------------------------------------------------
+while and do...while:
+again, function similar to normal java 
+while(condition){
+    //code to run 
+}
+
+do{
+    //code to run
+} while (condition)
+
+main difference between these 2 is the code inside a do...while loop is always executed at least once because the
+condition comes after the code inside the loop. in a while and for loop the check comes fist so the code may never be executed. 
+
+of course make sure that the initializer is incremented or decremented to avoid an infinite loop
+

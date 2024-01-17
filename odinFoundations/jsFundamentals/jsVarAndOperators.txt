@@ -67,7 +67,7 @@ we also have assignment operators:
 -=
 *=    x*=3; -> x = x*3
 /=    x/=5; -> x = x/5;
-
+---------------------------------------------------------------------------------------------------------------------
 javascript has a built in Numebr object which provided a bunch of methods to help work with numbers. 
 -toFixed() rounds the number to a fixed number of decimal places. eg lotOfDec=1.76635; lotOfDec.toFixed(2) would log 
 1.77 in the console. 
@@ -81,7 +81,10 @@ myNum = Number(myNum);
 **We can also convert to a number quickly by prefacing the string we want to be a number with a + for example: 
 alert( +apples + +oranges ); // 5 this is called the urary operator
 can also use parseInt() to parse a number
-
+-----------------------------------------------------
+***** use typeof to check if an input is number, string, boolean, symbol, object, null or undefined ****
+ex: typeof arguments[0] == "number"; // checks is arguments[0] is a number 
+---------------------------------------------------------------------------------------------------------------------
 Comparison Operators: 
 === - strict equality tests whether the left and right values are identical to one another 
 !== - strict non-equality reverse of above
@@ -91,6 +94,6 @@ Comparison Operators:
 the difference between == and === (and their reverses) are that == test whether the values are the same but not 
 whether their data-types are the same. === test for equality and their data-types which will ultimately result in fewer
 errors so use them!
-
+---------------------------------------------------------------------------------------------------------------------
 NaN - not a number, if you try to do math with a string youll get this error. Use the isNaN() method to check if your
-dealing with a number, or not. 
+dealing with a number, or not.  **Again use typeof to check type of values**

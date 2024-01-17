@@ -1,0 +1,98 @@
+Arrays: 
+It is common practice to declare arrays with the const keyword. This keyword defines a constant reference to an array,
+this does not mean that the array cannot be altered. New items can still be added and removed from the array and it 
+can still be altered generally speaking.
+
+Also note when using the const keyword, the array must be assigned a value when it is declared. 
+Doing the following will cause an error:
+const cars;
+cars = ["Saab", "Volvo", "BMW"];
+
+So be sure to give the array at least 1 value when declaring it. Then we can use the built in methods to add(push), remove(pop) and alter the array how we wish.
+
+const arrays have block scope which will perform as shown below:  
+const cars = ["Saab", "Volvo", "BMW"];
+// Here cars[0] is "Saab"
+{
+  const cars = ["Toyota", "Volvo", "BMW"];
+  // Here cars[0] is "Toyota"
+}
+// Here cars[0] is "Saab"
+
+** variables declared with var do not have block scope **
+basically if you declare a new variable with the same name the last value will be what stands. As shown below:
+var cars = ["Saab", "Volvo", "BMW"];
+// Here cars[0] is "Saab"
+{
+  var cars = ["Toyota", "Volvo", "BMW"];
+  // Here cars[0] is "Toyota"
+}
+// Here cars[0] is "Toyota"
+
+
+Syntax: 
+Array literal: const arrayName = [item1, item2, ...];
+this can also be declared across several lines if you like that look more. 
+
+can also create an empty array then add the elements:
+const cars = [];
+cars[0]= "Saab";
+cars[1]= "Volvo";
+cars[2]= "BMW";
+
+can also use the new keyword to create the array but this is suboptimal and it is better to use the array literal method
+const cars = new Array("Saab", "Volvo", "BMW");
+
+can access array elements using the index number: let item1 = arrayName[0]; 
+
+items can also be changed using the index number: arrayName[0] = newItem; //replaces the first item in the array with the value of newItem.
+
+the full array can be accessed by referring to the array name: document.getElementById("demo").innerHTML = array; //changes the innerHTML of the object with ID "demo" to the value of array
+
+since the array is an object, we can also use names to access its "members" in this example person.firstName returns John:
+const person = {firstName:"John", lastName:"Doe", age:46};
+
+arrays can have any type of objects within them and can contain multiple different types of objects within 1 array.
+You can have other objects, functions or other arrays within an array. 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+array built in methods/ properties:
+
+arrayName.length returns the size of the array
+
+.toString() returns a comma separated strings of the array values. (built in for all JS objects)
+
+.at(2) is basically the get method, returns the item at index 2 (could also use arrayName[2])
+
+.join() behaves like toString() but you can specify the separator ex arrayName.join(" * ")
+
+.pop() removes the last item from the array
+
+.push() adds a new item to the end of the array
+
+.shift() removes the first item from the array and shifts all other elements to a lower index returns the value that was "shifted" out
+
+.unshift() adds a new item at the beginning of the array and "unshifts" the other items returns the new length of the array
+
+we can use the length property to add an item to the end of the array by doing arrayName[arrayName.length] = "newItem";
+
+.concat() concatenates 2 array together and returns a completely new array (does not change the 2 arrays that were concatenated) but pass in the name of the other array u wish to concat. can take multiple arrays at once to concat many arrays
+this method can also be used with a single value to basically add a single value
+
+.copyWithin() copies array items to another position in the array. basically will replace the existing item at the specified index with the item u wish to change. ex arrayName.copyWithin(2,0) will copy the item at index 0 to index 2. 
+overwrites existing values, does not add items to the array, does not change the length of the array 
+
+.splice() adds new items to an array. first parameter defines the position where new item should be "spliced in" second parameter defines how many elements should be removed (0 removes none) 
+the other parameters are the new elements that should be added. returns the array with the items deleted. Very good to be used with the .indexOf() method which returns the index of a specifc value.
+Then we can use array.splice(index,1) to remove the value from the original array and return that changed array!
+
+.toSpliced() is a safe way to splice an array without altering the original one. Performs the same thing as .splice() just returns the new spliced array not changing the original
+
+.slice() slices a piece of an array into a new array. Creates a whole new array, not changing the original. Can be used w/ one parameter (an index of the array )which will slice from the given index to the end of the array. 
+Or can take two indices which will slice from the first index to the second. 
+
+Auto toString() JS auto converts an array into a comma separated string when a primitive value is expected. 
+
+
+
+

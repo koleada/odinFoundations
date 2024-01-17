@@ -6,8 +6,8 @@
         git add .
         git commit -m "A message describing what you have done to make this snapshot different"
     Commands related to checking status or log history
-        git status
-        git log
+        git status - shows the current status of the project eg what hasn't been committed but has been changed etc. 
+        git log - displays all previous commit messages so you can see what was updated and when. 
 
 The basic Git syntax is program | action | destination.
 

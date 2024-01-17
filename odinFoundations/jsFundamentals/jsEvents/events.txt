@@ -1,0 +1,57 @@
+******************************************* USE DEFER IN EVERY SINGLE <SCRIPT> !!!!! ******************************************************************
+
+Now that we can alter the DOM we can use EVENTS to dynamically change things as users click, type etc. 
+
+There are 3 main ways to achieve this: 
+1. specify function attributes directly on HTML elements 
+** not ideal as we can only set 1 "onclick" property per element 
+
+2. Set properties of form on[eventType] (onclick, onmousedown, etc) on the DOM nodes in your JavaScript 
+** still can only handle 1 of each event per element
+
+3. Attach event listeners to the DOM nodes in your JavaScript 
+** these are the preferred method but the others are also common and useful. This is a bit more complex to set up but much more powerful.
+
+All of these can be used with functions we create ourselves too, they do not have to be built in functions. As shown below: 
+
+method 1 with our own defined function:
+<button onclick="alertFunction()">CLICK ME BABY</button>
+// the JavaScript file 
+// METHOD 1
+function alertFunction() {
+  alert("YAY! YOU DID IT!");
+}
+
+method 2 and 3 with our own function: 
+<button id="btn">CLICK ME BABY</button>
+// the JavaScript file 
+// METHODS 2 & 3
+function alertFunction() {
+  alert("YAY! YOU DID IT!");
+}
+const btn = document.querySelector('#btn')
+
+// METHOD 2
+btn.onclick = alertFunction;
+
+// METHOD 3
+btn.addEventListener('click', alertFunction);
+
+we can pass in "e" to the event listen to put more information about the event in the console or alert it or whatever we want ex: 
+btn.addEventListener('click', function (e) {
+  console.log(e.target);
+});
+**e.target just gives us even more information 
+
+or we could do
+
+btn.addEventListener('click', function (e) {
+    e.target.style.background = 'blue';
+});
+changes the background of the element that triggered the event to blue 
+
+
+we can also use document.querySelectorAll() to select all elements of a certain class or type (eg span or button)
+this allows us to add events for multiple elements by just adding a single event listener to a single variable created using querySelectorAll. 
+
+Useful events: click, dblclick, keydown, keyup. full list of events + explanations here https://www.w3schools.com/jsref/dom_obj_event.asp
