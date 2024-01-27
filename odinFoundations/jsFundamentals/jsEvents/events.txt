@@ -1,4 +1,4 @@
-******************************************* USE DEFER IN EVERY SINGLE <SCRIPT> !!!!! ******************************************************************
+******************************************* USE DEFER IN EVERY SINGLE <SCRIPT> or events wont work & JS will generally be weird !!!!! ******************************************************************
 
 Now that we can alter the DOM we can use EVENTS to dynamically change things as users click, type etc. 
 
@@ -21,37 +21,60 @@ method 1 with our own defined function:
 function alertFunction() {
   alert("YAY! YOU DID IT!");
 }
-
+-------------------------------------
 method 2 and 3 with our own function: 
 <button id="btn">CLICK ME BABY</button>
-// the JavaScript file 
-// METHODS 2 & 3
-function alertFunction() {
-  alert("YAY! YOU DID IT!");
-}
+
 const btn = document.querySelector('#btn')
 
 // METHOD 2
-btn.onclick = alertFunction;
+btn.onclick = () => alert("Hello World");
 
 // METHOD 3
-btn.addEventListener('click', alertFunction);
+const btn = document.querySelector('#btn');
+btn.addEventListener('click', () => {
+  alert("Hello World");
+});
 
+-------------------------------------
 we can pass in "e" to the event listen to put more information about the event in the console or alert it or whatever we want ex: 
 btn.addEventListener('click', function (e) {
   console.log(e.target);
-});
-**e.target just gives us even more information 
+}); 
 
 or we could do
 
 btn.addEventListener('click', function (e) {
     e.target.style.background = 'blue';
 });
-changes the background of the element that triggered the event to blue 
+changes the background of the element that triggered the event to blue. we can also add other other methods below the background line to further manipulate the DOM and give a much more
+unique and interactive experience  
 
+** the "e" that is passed in to the function is an object that references the event itself. It is "a callback from addEventListener. This object comes with many useful properties
+and methods built into it, such as which mouse button or key was pressed or info about the events target. THe target is the DOM node that the event was triggered from. For example 
+console.log(e.target) will return the entire element from the DOM. (again just a reminder, the DOM is dynamic and is not necessarily the same as the HTML)
 
+** we can also create our own methods and set our listeners such that they call our custom method when the event is triggered. Any of the 3 methdos can do this simply jsut 
+change the method call to one of our own methods.
+-------------------------------------
 we can also use document.querySelectorAll() to select all elements of a certain class or type (eg span or button)
 this allows us to add events for multiple elements by just adding a single event listener to a single variable created using querySelectorAll. 
 
 Useful events: click, dblclick, keydown, keyup. full list of events + explanations here https://www.w3schools.com/jsref/dom_obj_event.asp
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Adding listeners to a group of nodes: 
+
+- we can use the querySelectorAll('selector') method to return a list of nodes matching the selector. These nodes will be contained in a node list which behaves and looks like an 
+array. We can then iterate through this nodeList with a loop and add a listener to each element. Shown below: 
+
+// buttons is a node list. It looks and acts much like an array.
+const buttons = document.querySelectorAll('button');
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+
+  // and for each one we add a 'click' listener
+  button.addEventListener('click', () => {
+    alert(button.id);
+  });
+});

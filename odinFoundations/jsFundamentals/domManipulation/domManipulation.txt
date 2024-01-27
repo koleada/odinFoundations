@@ -36,6 +36,8 @@ These properties and methods are what well mainly use to manipulate the webpage 
 Query Selectors: 
 -element.querySelector(selector) - returns a reference to the first match of selector.
 -element.querySelectorAll(selectors) - returns a “nodelist” containing references to all of the matches of the selectors.
+These are the recommended modern ways to select elements but we can also use "Document.getElementById" to get a reference by the elements ID or "Document.getElementByTagName() to return
+a nodelist containing all elements of a specific tag. 
 
 ** note we can use document to represent the entire DOM for these methods, or we can use specific classes or IDs **
 There are many other more specific queries that offer potential marginal benefits that we can use later on, these are most important for now.
@@ -155,3 +157,39 @@ The simplest way to fix this is to include your JavaScript at the bottom of your
 or
 We could just include a link to the external JavaScript file (be sure to include the keyword "defer" right after the src property to make sure its run after content is loaded.)
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MDN article for Manipulating Documents: 
+The Document Object Model is a set of APIs for controlling HTML and styling information that often uses the "Document" object.
+
+Window- The Window object is the browser tab that a webpage is loaded into. It has its own methods (such as Window.innerHeight and .innerWidth) and we can attach listeners to it.
+
+Navigator - represents the state and identity of the browser (aka the user-agent) This object is used to retrieve info about the user such as preferred language, a media stream from 
+the users webcam, etc. 
+
+The document (represented by the DOM in browsers) is the actual page loaded into the window, and is represented in JavaScript by the Document object. 
+You can use this object to return and manipulate information on the HTML and CSS that comprises the document, for example get a reference to an element in the DOM,
+ change its text content, apply new styles to it, create new elements and add them to the current element as children, or even delete it altogether.
+
+ DOM relationships: Root node: The top node in the tree, which in the case of HTML is always the HTML node (other markup vocabularies like SVG and custom XML will have different root elements).
+                    Child node: A node directly inside another node. For example, IMG is a child of SECTION in the above example.
+                    Descendant node: A node anywhere inside another node. For example, IMG is a child of SECTION in the above example, and it is also a descendant. 
+                    Parent node: A node which has another node inside it. 
+                    Sibling nodes: Nodes that sit on the same level in the DOM tree.
+
+Once we have an element reference stored in a variable, we can start to manipulate it using properties and methods available to it 
+(these are defined on interfaces like HTMLAnchorElement in the case of <a> element, its more general parent interface HTMLElement, and Node — which represents all nodes in a DOM). 
+First of all, let's change the text inside the link by updating the value of the Node.textContent property by doing the following:
+
+link.textContent = "Mozilla Developer Network";
+
+We can change the link the anchor is pointing to by doing the following: link.href = "https://developer.mozilla.org";
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Altering CSS styles: we can use Document.stylesheets to return an array-like object with CSSStyleSheet elements associated with the Document. 
+To change the CSS styles we can use the HTMLElement.style property. A few examples shown below: 
+para.style.color = "white";
+para.style.backgroundColor = "black";
+para.style.padding = "10px";
+para.style.width = "250px";
+para.style.textAlign = "center";
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+HTML manipulation: 
+we can use Element.setAttribute() method to give an element an attribute. It takes 2 args, 1 being the attribute the second being the value we want to set it to. 

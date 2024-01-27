@@ -1,7 +1,7 @@
 
     Commands related to a remote repository:
         git clone git@github.com:USER-NAME/REPOSITORY-NAME.git
-        git push or git push origin main (Both accomplish the same goal in this context)
+        git push or git push origin main (Both accomplish the same goal in this context) -> pushes a commit into the repo
     Commands related to the workflow:
         git add .
         git commit -m "A message describing what you have done to make this snapshot different"
@@ -16,4 +16,23 @@ For example,
     git add . is read as git | add | ., where the period represents everything in the current directory;
     git commit -m "message" is read as git | commit -m | "message"; and
     git status is read as git | status | (no destination).
-
+    git push
+-------------------------------------------------------------
+git branching: 
+    branching is a way to make changes to your repo without altering the main branch once we tested the new features are working we can then merge
+    them with the main branch to reflect our new changes only once we know they work and are how we want them to be.
+    
+    git branch <branchname> maeks a new branch
+    git checkout <branchname> let you change the new branch 
+    git branch with no args lets u see all current branches 
+    git checkout main lets you change back to main from any other branch 
+    
+    git checkout -b <branchname> allows you to make a new branch and change that new branch 
+    
+    git merge <branchname> allows you to merge which will take any changes you commited in "branchname" and add them to the branch your currently on
+    (the main branch)
+    
+    if you dont need a branch anymore it can be delted with git branch -d <name> (if its already been merged to main) or git branch -D <name> if 
+    it has not been merged with main 
+    
+advantage of branching: if you have a bug in a new feature you’re working on that you can’t figure out, and it causes your code to break, you don’t want to commit that broken code and have it in your project’s “permanent record”. You could instead create a new temporary branch, switch to it and commit your code to this new branch. If you then push this new temporary branch to GitHub you can share it with others that may be able to help solve your problem. 
