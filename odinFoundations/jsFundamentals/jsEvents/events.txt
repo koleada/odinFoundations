@@ -27,14 +27,20 @@ method 2 and 3 with our own function:
 
 const btn = document.querySelector('#btn')
 
-// METHOD 2
+// METHOD 2 (Element.event = () => function())
 btn.onclick = () => alert("Hello World");
 
-// METHOD 3
+// METHOD 3 (element.addEventListener('eventType', (e) => { //stuff here});  )
 const btn = document.querySelector('#btn');
 btn.addEventListener('click', () => {
   alert("Hello World");
 });
+
+** we can alter the syntax of the third method slightly by removing the => and adding a function name as shown below: 
+btn.addEventListener('click', function (e) {
+  console.log(e);
+});
+** also note we can still pass in "e" to get info about the event using either syntax, in the first one shown we would just put 'e' inside the () (without quotes)
 
 -------------------------------------
 we can pass in "e" to the event listen to put more information about the event in the console or alert it or whatever we want ex: 
@@ -78,3 +84,17 @@ buttons.forEach((button) => {
     alert(button.id);
   });
 });
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+bubbling - if you click on a nested element you also technically clicked on all of its parents as well. Meaning that it will set off click events on the others as well.
+
+if we dont want this we can just call "e.stopPropagation();" inside our event listeners body to only capture clicks on the 1 element that was actually clicked. Basically saying
+stop the bubbling from happening.
+
+capture - basically reverses the bubbling effect so if we click on a nested element with the e.stopPropagation() within the listener and also have "capture: true" inside the listener,
+then t.target would log the parent node not the note that was actually clicked. Basically reverse bubble so itll go from outer most parent to inner child where the event actually happened
+
+refer to https://www.youtube.com/watch?v=F1anRyL37lE or https://www.javascripttutorial.net/javascript-dom/javascript-events/ for more info on bubbling, capture and propagation 
+
+we can also add "once: true" to the event listener which would only allow the listener to capture the event one time then it would unbind the listener after this 1 event happened. 
+Basically behaving the same as element.removeEventListener() after the 1 event happened. This resets after the page is reloaded. This could be helpful for like a store checkout button
+that you only want the user to click once. 

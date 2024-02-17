@@ -23,11 +23,12 @@ git branching:
     them with the main branch to reflect our new changes only once we know they work and are how we want them to be.
     
     git branch <branchname> maeks a new branch
-    git checkout <branchname> let you change the new branch 
-    git branch with no args lets u see all current branches 
+    git checkout <branchname> lets you change the new branch so your now working in the new branch instead of main 
+    git branch with no args lets u see all current branches (the branch your currently in will have a * next to it)
     git checkout main lets you change back to main from any other branch 
     
-    git checkout -b <branchname> allows you to make a new branch and change that new branch 
+    git checkout -b <branchname> allows you to make a new branch and change to that new branch so all commits/updates will be within the new branch.
+    This command is the main one to use when branching 
     
     git merge <branchname> allows you to merge which will take any changes you commited in "branchname" and add them to the branch your currently on
     (the main branch)
@@ -35,4 +36,9 @@ git branching:
     if you dont need a branch anymore it can be delted with git branch -d <name> (if its already been merged to main) or git branch -D <name> if 
     it has not been merged with main 
     
+    when pusing to a new branch you have to use "git push origin <branchname> or the method described below.
+    
 advantage of branching: if you have a bug in a new feature you’re working on that you can’t figure out, and it causes your code to break, you don’t want to commit that broken code and have it in your project’s “permanent record”. You could instead create a new temporary branch, switch to it and commit your code to this new branch. If you then push this new temporary branch to GitHub you can share it with others that may be able to help solve your problem. 
+
+
+** we can also easily push to a rmeote branch usign "git push -u origin <branch>" auto links the lcoal branhc you push with to the remote one. More info here: https://www.educative.io/edpresso/what-is-the-git-push--u-remote-branch-name-command

@@ -1,5 +1,9 @@
 flexbox is a relativley new addition to css and for many has quickly became the default way to position elements. 
 
+** to create a flexbox that fits items to a specifc size and width we need to use an outer container with of the desired height and width.  Then we need to use another flexbox for the rows, this box needs to have a width of the the desired witch we need. Once we have this we can populate the outer box with the desired number of rows (which are flexboxes) and they will auto fit to the space. Then we need to add the items to each row which will auto fit to the correct size of each row.
+This can all be done dynamically using javascript please see the code in the etch-a-sketch project for examples!!!! **
+
+
 ** this is a bit of a complex topic so be sure to look at your element in dev tools if you have any issues. 
 
 flexbox is a way to arrange items into rows or columns, these items will flex (grow or shrink) based on simple rules we can define. 

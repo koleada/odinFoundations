@@ -1,0 +1,20 @@
+We can very simply add a little rgb color picker using an input tag. This allows the user to choose any color across the whole rgb spectrum. 
+
+<input type="color" id="colorpicker" value="#0000ff"> where value is the default color.
+-------------------------------------------------------------------------------------------------------
+WE need to use JS to set event listeners to change the color of something when the user changes the color input field.  
+
+As is the case with other <input> types, there are two events that can be used to detect changes to the color value: input and change. "input" event is fired on the <input> element every time the color changes. The "change" event is fired when the user dismisses the color picker. 
+
+After either event is fired, you can determine the new value of the element by looking at its value.
+--------------------------------------------------------------------------------------------------------
+example of event to watch color input and change color of something when color input is changed:
+
+colorPicker.addEventListener("input", updateFirst, false);
+colorPicker.addEventListener("change", watchColorPicker, false);
+
+function watchColorPicker(event) {
+  document.querySelectorAll("p").forEach((p) => {
+    p.style.color = event.target.value;
+  });
+}

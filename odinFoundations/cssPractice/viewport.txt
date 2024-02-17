@@ -1,0 +1,6 @@
+vh - viewport height
+vw - viewport width 
+
+these can be used with width and/or height to dynamically scale to view port 
+
+eg width: 100vw;   --- sets width to 100% of the viewport

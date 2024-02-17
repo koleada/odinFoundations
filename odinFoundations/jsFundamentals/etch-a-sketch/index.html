@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>etch-a-sketch</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- link for favicon small img shown on browser tab -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+</head>
+<body id="body">
+    
+    <div class="main">
+        
+        <div id="btncont">
+            
+            <div id="colorDiv">
+                <label for="colorpicker">COLOR SELECTION:</label>
+                <input type="color" id="colorpicker" value="#934A9F">
+            </div>
+            <div id="gridNum">
+                <div id="gridTxt">Select Grid Size:</div>
+                <input type="range" min="1" max="100" value="16" class="slider" id="gridRange">
+                <div id="gridVal">Current Size: 16X16</div>
+            </div>
+            <div class="rainbowCont">
+                <button id="rainbow"><img src="img/rainbow.png" alt="" id="rainb"></button>
+            </div>
+            
+            <button id="clear">CLEAR</button>
+        </div>
+        <div id="etch">           
+            <h1 id="title">Etch-a-Sketch</h1>
+            <div id="grid"></div>
+            <div id="footer">Designed by Kole Niznik 2024</div>
+        </div>  
+    </div>
+    
+</body>
+</html>

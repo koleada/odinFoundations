@@ -16,6 +16,7 @@ document.querySelector("#btn").addEventListener("click", () => {
     let deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "Delete";
     deleteBtn.style.margin = "15px";
+    //note that we add the listener inside of another listener as opposed to creating the element then adding the listener outside of the block.
     deleteBtn.addEventListener("click", function(e) {
         list.removeChild(e.target.parentElement);
     });
@@ -32,3 +33,4 @@ document.querySelector("#btn").addEventListener("click", () => {
     //reset the value of the input to an empty string
     input.value = "";
 });
+
