@@ -1,0 +1,186 @@
+map(), filter() and reduce() methods for arrays
+
+see https://javascript.info/array-methods for a comprehensive list of array methods and explanations of each
+
+(exercises 8-12)
+
+** nodelists can easily be transformed into an array which can then use all of these sick methods. We could do: const nodeArr = Array.from(document.querySelectorAll("someSelector"));
+------------------------------------------------------------------------------------------------------------------------------------
+*** Negative indexes ARE allowed as args for array methods! THey specify the position form the end of the array. 
+example: 
+let arr = [1, 2, 5];
+
+// from index -1 (one step from the end)
+// delete 0 elements,
+// then insert 3 and 4
+arr.splice(-1, 0, 3, 4);
+
+alert( arr ); // 1,2,3,4,5
+------------------------------------------------------------------------------------------------------------------------------------
+
+BASIC METHODS: 
+push() - adds item to the end of the array
+pop() - removes item from the end
+shift() - removes item from the beginning 
+unshift() - adds item to the beginning 
+---------------------------------------------------
+"delete arr[1]" would delete element at index 1 but then it would leave index 1 undefdined which casues issues thus this method should
+be avoided. 
+---------------------------------------------------
+splice() - like a swiss army knife for arrays. IT can remove, insert and replace elements in an array. 
+Syntax: arr.splice(start[, deleteCount, elem1, ..., elemN])
+
+it modifies the array starting from index "start" removes deleteCount elements and thne inserts elem1,..., elemN in their place,
+then it returns an array of the removed elements. 
+
+removing example: 
+let arr = ["I", "study", "JavaScript"];
+
+arr.splice(1, 1); // from index 1 remove 1 element
+
+alert( arr ); // ["I", "JavaScript"]
+--------------------------
+removing and replacing: 
+let arr = ["I", "study", "JavaScript", "right", "now"];
+
+// remove 3 first elements and replace them with another
+arr.splice(0, 3, "Let's", "dance");
+
+alert( arr ) // now ["Let's", "dance", "right", "now"]
+--------------------------
+inserting without deleting:  (set deleteCount to 0)
+let arr = ["I", "study", "JavaScript"];
+
+// from index 2
+// delete 0
+// then insert "complex" and "language"
+arr.splice(2, 0, "complex", "language");
+
+alert( arr ); // "I", "study", "complex", "language", "JavaScript"
+--------------------------------------------------------------
+slice() method is simpler then the similar looking splice() method
+syntax: arr.slice([start], [end])
+
+it returns a new array copying all items form start to end (not including end). Both args can be negative in that case position from 
+array end is assumed. Similar to string.slice() but instead of substrings it makes subarrays.
+Can also be used w no args to create an exact copy of the original array to be used to make further transformations. 
+---------------------------------------------------------------
+array.forEach(function(item, index, array)){
+  something to do w items
+}
+iterates through all items and does something to each 
+---------------------------------------------------------------
+arr.indexOf(item,from) and arr.includes(item, from)
+** usually used with only the first arg which searches the whole array 
+
+arr.indexOf(item, from) – looks for item starting from index from, and returns the index where it was found, otherwise -1.
+arr.includes(item, from) – looks for item starting from index from, returns true if found.
+
+SEE THE LINK FOR MANY MANY MORE METHODS
+-------------------------------------------------------------------------------------------------------------------------------------
+INTERMEDIATE ARRAY METHODS:
+sort() 
+
+sort is used to sort an array by a given field 
+usage:
+const orderedArr = inventors.sort(function (a,b) {
+  if (a.year < b.year){
+    return 1;
+  }
+  else {
+    return -1;
+  }
+});
+
+so this is sorting the "inventors" array by the year field associated with the object stored in the array. a,b are basically just 2 different elements in the array each element is compared
+to one another and it will sort them from lowest year to highest year. 
+----------------------------------------------------------------
+map()- takes a "callback" argument. Callback is a fancy term for a function that takes another function as an argument
+
+map automatically iterates over an array for us and will update the values by calling the function it takes on each array value. 
+We can also use an arrow function and a normal param to define a function right in the map statement. 
+
+examples:
+//adds 1 to each value in the array 
+function addOne(num) {
+  return num + 1;
+}
+const arr = [1, 2, 3, 4, 5];
+arr.map(addOne); // Outputs [2, 3, 4, 5, 6]
+
+//same thing using an arrow function
+const arr = [1, 2, 3, 4, 5];
+arr.map((num) => num + 1); // Outputs [2, 3, 4, 5, 6]; 
+----------------------------------------------------------------
+filter - somewhat similar to map the filter function iterates over an array and applies the callback function to each item.
+
+However, it expects the callback function to return true or false. If the function returns true on a specific value then that value will 
+be included in the output, otherwise, the value is not included. THis is a very easy way to filter an array based on a predicate. 
+
+ex: 
+//same array as before originally contains [1,2,3,4,5]
+// isOdd() returns true if val is odd false otherwise, hence why only odd values are included. 
+arr.filter(isOdd); // Outputs [1, 3, 5];
+-----------------------------------------------------------------
+reduce - similar to map and filter, reduce also takes a callback function as an arg but it can also takes a second argument
+
+there are 2 key differences with this method:
+
+first: The callback also can take up to 2 args. The first arg is an "accumulator" which is the current value of the result at that 
+point in the loop, this will either be set to initialValue or the first element in the array if no initialValue is provided. The second
+arg for the callback function is the "current" value which is the item currently being iterated on. 
+
+second: reduce() can also take an "initialValue" argument which is useful when we dont want the first value to be the first element in 
+the array. For example if we wanted to sum all nums in the array and add 10 to that sum we could set initialValue to 10. 
+
+ex: 
+//initial array is [1,2,3,4,5]
+// were again defining the function in the statement using an arrow function. 
+arr.reduce((total, currentItem) => total * currentItem, 1); // Outputs [1, 2, 6, 24, 120];
+
+explanation: 
+the callback being passed in is "(total, currentItem) => total*currentItem, 
+initialize total to 1 with the second argument. 
+
+What reduce does is iterate through all items in the array then apply the callback which changes the value to total without changing 
+the array itself, then returns total after all elements have been iterated over. 
+-----------------------------------------------------------------------------------------------------------------------------------
+Practice: 
+rewrite the following code using all 3 methods described above: 
+
+original: 
+function sumOfTripledEvens(array) {
+  let sum = 0;
+  for (let i = 0; i < array.length; i++) {
+    // Step 1: If the element is an even number
+    if (array[i] % 2 === 0) {
+      // Step 2: Multiply this number by three
+      const tripleEvenNumber = array[i] * 3;
+
+      // Step 3: Add the new number to the total
+      sum += tripleEvenNumber;
+    }
+  }
+  return sum;
+}
+
+function sumOfTripledEvens(array) {
+  return array.
+  arr.filter((num) => num%2==0) 
+  arr.map((num) => (num*3));
+  arr.reduce((sum, currentItem) => sum + currentItem);
+}
+-----------------------------------------------------------------
+.some() checks if at least one item fits a certain criteria
+takes a function that returns a boolean value.
+ex:
+const isAdult = pplArr.some(person => {
+  const currentYear = (new Date()).getFullYear(); //gets current year
+  return currentYear - person.year >= 19;  
+});
+-----------------------------------------------------------------
+.every() checks if all items fit a certain criteria same as some but checks for all items
+----------------------------------------------------------------
+.find() similar to filter but instead of returning a subarray of found items, it just returns the first item that matches your search
+----------------------------------------------------------------
+findIndex() returns the index of the first item that fits the criteria

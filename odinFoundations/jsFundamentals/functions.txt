@@ -1,4 +1,50 @@
 Functions:
+
+Arguments are Passed by Value
+The parameters, in a function call, are the function's arguments.
+JavaScript arguments are passed by value: The function only gets to know the values, not the argument's locations.
+If a function changes an argument's value, it does not change the parameter's original value.
+Changes to arguments are not visible (reflected) outside the function.
+
+Objects are Passed by Reference
+In JavaScript, object references are values.
+Because of this, objects will behave like they are passed by reference:
+If a function changes an object property, it changes the original value.
+Changes to object properties are visible (reflected) outside the function
+
+----------------------------------------------------------------------------
+** we can refer to the arguments passed to a function by using the "arguments[]" array. For example, argument[0] references the first argument passed to the function. **
+---------------------------------------------------------------------------
+JavaScript function definitions do not specify data types for parameters.
+JavaScript functions do not perform type checking on the passed arguments.
+JavaScript functions do not check the number of arguments received.
+
+if a function is called with "missing" arguments eg the caller did not provide all args listed in the function declaration, the arguments will be set to "undefined" soemtimes
+this is fine but sometimes we need to check and set a default value for the missing arguments ex:
+function myFunction(x, y) {
+  if (y === undefined) {
+    y = 2;
+  }
+}
+----------------------------------------
+we could also give the arg a default value in the method header as shown below:
+function myFunction(x, y = 10) {
+  return x + y;
+}
+myFunction(5);
+
+if y is not passed to the function or is undefined it will be set to 10 since the default is provided.
+-----------------------------------------------------------------------------------
+the rest parameter "(...)" will allow a function to treat all arguments as an array  (this operator can also be copy vals from a nodelist to an array called spread operator)
+function sum(...args) {
+  let sum = 0;
+  for (let arg of args) sum += arg;
+  return sum;
+}
+
+let x = sum(4, 9, 16, 25, 29, 100, 66, 77);
+--------------------------------------------------------------------------------
+
 Syntax: 
 function functionName(args){
     returns args + 1;

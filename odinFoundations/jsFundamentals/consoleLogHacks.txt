@@ -1,0 +1,3 @@
+console.table() -- can be very useful wiht looking at arrays of objects, returns a nice table with values for the object and all of its properties 
+
+console.log({someVar}) -- displays the variable name as well as its values

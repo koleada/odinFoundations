@@ -1,0 +1,182 @@
+Objects are a huge part of JS and can have properties which are key:value pairs that store important information about the object.
+
+Object Creation:
+a blank object can be created in either of the following ways:
+let user = new Object(); // "object constructor" syntax
+let user = {};  // "object literal" syntax
+--------------------------------------------------------------------
+ADDING PROPERTIES:
+the {} syntax is called object literal. With this syntax you can begin adding properties to the object in the declaration as shown below:
+let user = {     // an object
+  name: "John",  // by key "name" store value "John"
+  age: 30        // by key "age" store value 30
+};
+--------------------------------------------------------------------
+ACCESSING PROPERTIES:
+to access these properties we can do the following:
+// get property values of the object:
+alert( user.name ); // John
+alert( user.age ); // 30
+--------------------------------------------------------------------
+PROP VALS:
+The value of a property can be any type including a boolean for example: user.isAdmin = true;
+--------------------------------------------------------------------
+DELETE PROPERTIES:
+we can remove a property using the "delete" operator: delete user.age;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MULTIWORD PROPERTIES AND DYNAMIC ACCESS: 
+we can use multiword property names but they have to be in quotes ex: 
+let user = {
+  name: "John",
+  age: 30,
+  "likes birds": true  // multiword property name must be quoted
+};
+however we cannot use the normal dot notation to access property with multiword names. We would have to use [] to access properties with multiple word names as shown below:
+let user = {};
+
+// set
+user["likes birds"] = true;
+
+// get
+alert(user["likes birds"]); // true
+
+// delete
+delete user["likes birds"];
+---------------------------
+we could also just create a new variable containing the multiword property name and use the new varibale to access the property as shown: 
+let key = "likes birds";
+
+// same as user["likes birds"] = true;
+user[key] = true;
+---------------------------
+we can use this to reference properties dynamically as well: 
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key = prompt("What do you want to know about the user?", "name");
+
+// access by variable note we could also just do user.key here instead of the square bracket notation 
+alert( user[key] ); // John (if enter "name")
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+COMPUTED PROPERTIES: 
+[] notation is more powerful then . notation but it is a bit more cumbersome. [] should be used with mroe complex property name and . with simple names 
+
+Computed properties are when we use [] in the object declaration to make a property using a current value. This can be used to take user input and use it as a property name:
+let fruit = prompt("Which fruit to buy?", "apple");
+let bag = {
+  [fruit]: 5, // the name of the property is taken from the variable fruit
+};
+alert( bag.apple ); // 5 if fruit="apple"
+
+could also be done as: 
+let fruit = prompt("Which fruit to buy?", "apple");
+let bag = {};
+
+// take property name from the fruit variable
+bag[fruit] = 5;
+
+or could be used with a multiword by doing the following:
+let fruit = 'apple';
+let bag = {
+  [fruit + 'Computers']: 5 // bag.appleComputers = 5
+};  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Making object constructors: 
+function makeUser(name, age) {
+  return {
+    name: name,
+    age: age,
+    // ...other properties
+  };
+}
+
+let user = makeUser("John", 30);
+alert(user.name); // John
+
+there is also a shorthand version of this becuase this action is so common:
+function makeUser(name, age) {
+  return {
+    name, // same as name: name
+    age,  // same as age: age
+    // ...
+  };
+}
+
+we can also use both the normal and shorthand in the same object:
+let user = {
+  name,  // same as name:name
+  age: 30
+};
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PROPERTY NAMING CONVENTIONS 
+There are basically no limitations on property names they can be anything strings, symbols or numbers. If thye are numbers they will be converted to string type. However, if using
+[] to access a property that is just a number for example 0, you can just do alert(obj[0]) wihtout quotes and it will work
+
+You can also name properties reserved words such as for or let or return 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PROPERTY EXISTENCE TEST, "IN" OPERATOR: 
+IF you try to access a property that doesnt exist this will not cause an error, the nonexistent property will just return undefdined. 
+
+we can check is a property exists in 2 ways as shown below: 
+let user = {};
+alert( user.noSuchProperty === undefined ); // true means "no such property"
+---------------------------------
+or we can use the "in" operator:
+"key" in object 
+
+example: 
+let user = { name: "John", age: 30 };
+alert( "age" in user ); // true, user.age exists
+alert( "blabla" in user ); // false, user.blabla doesn't exist
+
+** note that if we dont use quotes around the property name, this means that a variable should contain the actual name for the property ex:
+let user = { age: 30 };
+let key = "age";
+alert( key in user ); // true, property "age" exists
+---------------------------------
+There is an instance where the 2 methods to test for property existence can return different results. If a property does exist but it contains undefdined. This shouldnt really happen
+as we should not be explicitly assigning undefined but still some info. 
+------------------------------------------------------------------------
+for...in loop 
+THis loop is used to iterate over all keys of an object 
+
+Syntax: 
+for ( let key in object) {
+  // executes the body for each key among object properties
+}
+
+** this loop allows us to define a varibale in this case called key that basically is just the current key its on. Key is commonly used here as well as "prop" eg for(let prop in obj)
+
+example: 
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true
+};
+for (let key in user) {
+  // keys
+  alert( key );  // name, age, isAdmin
+  // values for the keys
+  alert( user[key] ); // John, 30, true
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ORDER OF PROPERTIES:
+Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
+The short answer is: “ordered in a special fashion”: integer properties are sorted, others appear in creation order. The details follow.
+As an example, let’s consider an object with the phone codes:
+
+let codes = {
+  "49": "Germany",
+  "41": "Switzerland",
+  "44": "Great Britain",
+  // ..,
+  "1": "USA"
+};
+for (let code in codes) {
+  alert(code); // 1, 41, 44, 49
+}
+
+** this is only the case of integers, for example if a key is named "1.2" it will just be in creation order. ** 
+** we can also cheat this system by adding a + in front of an integer named key to make it a string. ex "+41": "Germany" would appear in creation order
